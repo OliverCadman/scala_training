@@ -1,0 +1,69 @@
+EXPRESSIONS:
+    If you know any programming language, you know about statements and expressions.
+    A statement is the smallest standalone element that expresses some kind of action to
+    be carried out. In contrast, an expression is something that returns some kind of value.
+
+    E.G.
+        println("Hello Scala")
+        // Output := Hello Scala
+        // This is a statement
+
+        val x = 2 * Math.sqrt(2) / 5
+        // This is an expression.
+
+    Let's look at an example:
+
+    def myResult(m: Int) = {
+        var r = ""
+
+        if (m <= 50) {
+            r = "fail"
+        } else {
+            r = "pass"
+        }
+
+        println(r)
+    }
+
+    myResult(65) // Output := pass
+
+    =================
+
+    If we look at this small program, we can see that it is a collection of statements and expressions.
+
+    With this information, we can determine that our programs are just a collection of statements
+    and expressions that modify a program's state.
+
+    In this program, we have an 'if' statement, and we have a print statement. Both of these statements are
+    modifying something. The 'if' statement is changing the state of 'r', and the 'println' statement changes
+    the state of the console.
+
+    Both statements and expressions are applicable to IMPERATIVE programming.
+
+    In the FUNCTIONAL programming model, every functional programming statement SHOULD HAVE THE CAPABILITY
+    TO RETURN A VALUE.
+
+    In other words, you could say that we don't have statements in functional programming. In functional programming,
+    we only have expressions (and side-effects...). That is the ground rule for functional programming. The rule is
+    even valid for print statements.
+
+    val x = println("Hello")
+    \\ Output := Hello
+        x: Unit = ()
+
+    BENEFITS OF EXPRESSIONS OVER STATEMENTS
+    ---------------------------------------
+
+    When you start practicing the functional programming approach, you will realize that using a functional approach
+    allows us to reduce the number of variables in our code. Removing variables from your code helps you achieve
+    ultimate mutability. I mean, if you don't have a variable, you don't have the chance to mutate it, right?
+
+    Going back to the myResult function from before, the current setup is imperative. Let's make it functional.
+
+    def myResult(m: Int) = if (m < 50) "fail" else "pass"
+    println(myResult(65))
+
+    \\ Output := pass
+
+    The 'if' statement above returns a value, hence, we don't need a variable to store that value.
+    The functional version of the codeis concise, and the returning expressions helps us achieve mutability.

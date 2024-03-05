@@ -1,0 +1,33 @@
+
+
+FUNCTIONS:
+    Function Definitions
+    Parameterless Functions
+    Call-by-name/call-by-value
+    Auxiliary Functions
+    Recursive Functions
+    Tail Recursion
+    Input Types
+    Return Types
+
+    Exercises:
+        factorial
+        fibonacci
+        isPrime
+        greeting
+
+RECURSION:
+    Tail Recursion
+
+OBJECT-ORIENTED PROGRAMMING:
+    Method Notation
+    Classes
+    Inheritance
+    Overloading
+    Abstract Classes
+    Generics
+    Traits
+    Objects
+    Companion Objects
+    Singleton Objects
+    apply()
