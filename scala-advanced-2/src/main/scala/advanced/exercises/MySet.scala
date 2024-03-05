@@ -12,8 +12,10 @@ trait MySet[A] extends (A => Boolean) {
   def printElements: String
   def isEmpty: Boolean
   override def toString(): String = s"[$printElements]"
+  def -(elem: A): MySet[A]
+  def &&(anotherSet: MySet[A]): MySet[A]
+  def --(anotherSet: MySet[A]): MySet[A]
   // &&: Intersection
-  // --: Difference
   // unary_!: Negate the set
 
 }
@@ -28,6 +30,9 @@ class EmptySet[A] extends MySet[A] {
   def foreach(f: A => Unit): Unit = ()
   def printElements: String = ""
   def isEmpty: Boolean = true
+  def -(elem: A): MySet[A] = this
+  def &&(anotherSet: MySet[A]): MySet[A] = this
+  def --(anotherSet: MySet[A]): MySet[A] = this
 }
 
 class NonEmptySet[A](h: A, t: MySet[A]) extends MySet[A] {
@@ -54,6 +59,13 @@ class NonEmptySet[A](h: A, t: MySet[A]) extends MySet[A] {
 
 
   def isEmpty: Boolean = false
+  def -(elem: A): MySet[A] =
+    if (h == elem) t
+    else t - elem + h
+
+  def &&(anotherSet: MySet[A]): MySet[A] = filter(x => anotherSet.contains(x))
+
+  def --(anotherSet: MySet[A]): MySet[A] = filter(x => !anotherSet.contains(x))
 }
 
 object MySet {
@@ -75,6 +87,16 @@ object SetPlayground extends App {
   println(mySet.filter(_ % 2 == 0))
   println(mySet.map(_ * 4))
   println(mySet.flatMap(x => MySet(x, x + 1)))
+
+  println(mySet + 6)
+  println(mySet ++ MySet(6, 7, 8, 8))
+
+  mySet.foreach(println)
+  println(mySet - 1)
+
+  val anotherSet = MySet(3, 4, 5, 6, 7)
+  println(anotherSet && mySet)
+  println(anotherSet -- mySet)
 }
 
 
